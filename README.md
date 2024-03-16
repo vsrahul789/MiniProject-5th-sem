@@ -26,3 +26,17 @@ and so on.
 2. specify the amount the sender is sending
 3. the amount the sender is sending should be less than the account balance
 4. the security pin should be correct
+
+# For services there are branches for customers to visit for any further assistace
+
+### Branch has:
+
+1. Branch_id to uniqly identify the branch
+2. Branch_name
+3. Address of the branch
+
+# Inside the bank there are employees who will assit the customers based on the profile of the customer
+
+1. for coustomers balance < 10000 asst. Manager will assist the customer
+2. for coustomers balance > 10000 and balance < 100000 Deputy Manager will assist the customer
+3. for coustomers balance > 100000 Relationship Manager will assist the customer
