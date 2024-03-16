@@ -7,6 +7,20 @@ import java.util.Scanner;
 public class AccountManager {
     Connection connection;
     Scanner scanner;
+    private int generateTransaction_id() throws SQLException {
+        String generateTransactionIDQuery = "SELECT transaction_id from transaction_details ORDER BY transaction_id DESC LIMIT 1";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(generateTransactionIDQuery);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next()){
+                return rs.getInt("transaction_id")+1;
+            }else{
+                return 1;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public AccountManager(Connection connection, Scanner scanner) {
         this.connection = connection;
@@ -107,6 +121,18 @@ public class AccountManager {
                         creditPreparedStatement.setLong(2, receiver_account_number);
                         debitPreparedStatement.setDouble(1, amount);
                         debitPreparedStatement.setLong(2, sender_account_number);
+
+                        String transaction_query = "INSERT INTO transaction_details (transaction_id,sender_id, receiver_id,transaction_time,amount) VALUES (?,?,?, ?, ?)";
+                        PreparedStatement transactionPreparedStatement = connection.prepareStatement(transaction_query);
+                        int transaction_id = generateTransaction_id();
+                        transactionPreparedStatement.setInt(1, transaction_id);
+                        transactionPreparedStatement.setLong(2, sender_account_number);
+                        transactionPreparedStatement.setLong(3, receiver_account_number);
+                        transactionPreparedStatement.setTimestamp(4, new java.sql.Timestamp(System.currentTimeMillis()));
+                        transactionPreparedStatement.setDouble(5, amount);
+
+                        transactionPreparedStatement.executeUpdate();
+
                         int rowsAffected1 = debitPreparedStatement.executeUpdate();
                         int rowsAffected2 = creditPreparedStatement.executeUpdate();
                         if (rowsAffected1 > 0 && rowsAffected2 > 0) {
