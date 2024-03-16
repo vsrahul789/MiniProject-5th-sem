@@ -17,3 +17,12 @@ and so on.
 1. Register features.
 2. Login Features.
 3. Logout features.
+
+# After all that the user should be able to send money and recieve money
+
+### For that we have Transctions table(Requirements)
+
+1. should know the reciever acc_no
+2. specify the amount the sender is sending
+3. the amount the sender is sending should be less than the account balance
+4. the security pin should be correct
