@@ -58,13 +58,9 @@ public class Main {
                             acc_no = accounts.getAccount_no(email);
                             int choice2 = 0;
                             while(choice2 != 5) {
-<<<<<<< HEAD
+
                                 System.out.println("1. Deposite Money");
                                 System.out.println("2. Withdraw Money");
-=======
-                                System.out.println("1. Debit Money");
-                                System.out.println("2. Credit Money");
->>>>>>> origin/main
                                 System.out.println("3. Transfer Money");
                                 System.out.println("4. Check Balance");
                                 System.out.println("5. Log Out");
