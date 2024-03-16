@@ -10,3 +10,10 @@ This project is a demonstation of the banking trasactions work like:
 
 and so on.
 
+# To access these features the user should be logged in the bank as a user
+
+### For that we have
+
+1. Register features.
+2. Login Features.
+3. Logout features.
